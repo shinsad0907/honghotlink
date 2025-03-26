@@ -19,4 +19,5 @@ def data_link(id):
 
 # ...existing code...
 
-app.run(debug=False)
+debug_mode = os.getenv('FLASK_ENV') == 'development'
+app.run(debug=debug_mode)
