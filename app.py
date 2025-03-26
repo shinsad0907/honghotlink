@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, session
 from functools import wraps
+import requests
+import os
+import json
 from datetime import datetime
 from src_python.get_data import GET_DATA
-import os
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
