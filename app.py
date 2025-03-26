@@ -22,4 +22,4 @@ def data_link(id):
 
 # ...existing code...
 
-app.run(debug=False)
+app.run()
