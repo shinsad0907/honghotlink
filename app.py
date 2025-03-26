@@ -1,10 +1,14 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, jsonify, session
 from functools import wraps
-import requests
-import os
-import json
 from datetime import datetime
-from src_python.get_data import GET_DATA
+import os
+
+try:
+    from src_python.get_data import GET_DATA
+except ImportError:
+    print("Không thể import GET_DATA từ src_python/get_data.py. Kiểm tra lại đường dẫn.")
+    exit(1)
+
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
@@ -19,7 +23,12 @@ def data_link(id):
         return render_template('link.html', link_data=link_data)
     else:
         flash('Không tìm thấy link!', 'danger')
+        return redirect(url_for('home'))  # Chuyển hướng về trang chủ hoặc trang khác
 
-# ...existing code...
+# Trang chủ hoặc một route mặc định khác
+@app.route('/')
+def home():
+    return "Welcome to the Home Page!"
 
-app.run()
+if __name__ == '__main__':
+    app.run(debug=False)
