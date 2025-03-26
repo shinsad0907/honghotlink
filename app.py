@@ -8,11 +8,6 @@ from src_python.get_data import GET_DATA
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
-# Sử dụng thư mục tạm (thường áp dụng cho môi trường serverless như AWS Lambda)
-UPLOAD_FOLDER = '/tmp/uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 def get_data_link():
     return GET_DATA().get_data_link()
 
@@ -27,4 +22,4 @@ def data_link(id):
 
 # ...existing code...
 
-app.run(debug=True)
+app.run(debug=False)
